@@ -20,13 +20,19 @@ class FirstTest {
 	}
 	
 	@Test
-    void readJSON() {
-		helloworld test = new helloworld();
-		test.readJSON("tests/text transformation/1.json");
+    void readJson() {
+		parseJson test = new parseJson();
+		test.readJSON("tests/text transformation/example0.json");
     }
 	
 	@Test
-    void verifyJSON() {
+    void readEmptyJson() {
+		parseJson test = new parseJson();
+		test.readJSON("tests/text transformation/nothing.json");
+    }
+	
+	@Test
+    void verifyJson() {
 		fail("Not yet implemented");
     }
 	
