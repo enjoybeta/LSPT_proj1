@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 
 group = 'com.indexer'
 version = '0.1'
-sourceCompatibility = 1.9
+sourceCompatibility = 9
 
 repositories {
 	mavenCentral()

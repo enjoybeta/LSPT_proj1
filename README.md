@@ -7,5 +7,6 @@ package | version
 ------------ | -------------
 jre | 9.0.1<br />
 eclipse | oxygen.1a<br />
-java-json | provided in /environment/json-simple-1.1.1.jar<br />
+gradle | 4.3.1 - embeded in eclipse<br />
+json-simple | 1.1.1 - embeded in gradle<br />
 junit5 | embeded in eclipse<br />
