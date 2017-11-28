@@ -3,7 +3,7 @@ package com.indexer.webApi;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class webPageInfo {
+public class TextTransInput {
 	String title;
 	int titleIndex;
 	HashMap<String, String> metadata = new HashMap<String, String>();

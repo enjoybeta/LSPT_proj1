@@ -20,13 +20,16 @@ public class WebApiApplication {
         //http://localhost:8080/stopWords
     }
     
+    //for ranking team
     @RequestMapping(value="/getToken", method=RequestMethod.POST, consumes="text/plain")
     public String getToken(@RequestBody String input) {
+    	RankingInput ret = parseJson.readRankingJSON(input);
         return "result to ranking";
         // test with:
         //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d 'some tokens' http://localhost:8080/getToken
     }
     
+  //for text transform team
     @RequestMapping(value="/setToken", method=RequestMethod.POST, consumes="text/plain")
     public void setToken(@RequestBody String input) {
     	  System.out.println(input);
