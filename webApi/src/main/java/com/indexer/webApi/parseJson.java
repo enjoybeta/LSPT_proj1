@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.*;
 
 public class parseJson {
-	//for text transform team - setToken
+	// for text transform team - setToken
 	public static TextTransInput readTextTransformJSON(String jsonStr) {
 		TextTransInput textTransInput;
 		try {
@@ -51,14 +50,14 @@ public class parseJson {
 		return textTransInput;
 	}
 
-	//for ranking team - getToken(the string they pass in)
+	// for ranking team - getToken(the string they pass in)
 	public static RankingInput readRankingJSON(String jsonStr) {
 		RankingInput rankingInput;
 		try {
 			rankingInput = new RankingInput();
 			JSONArray wholeJson = (JSONArray) new JSONParser().parse(jsonStr);
 			for (int i = 0; i < wholeJson.size(); ++i) {
-				rankingInput.ngrams.add((String)wholeJson.get(i));
+				rankingInput.ngrams.add((String) wholeJson.get(i));
 			}
 		} catch (ParseException e) {
 			System.err.println("ERROR");
@@ -72,13 +71,26 @@ public class parseJson {
 		return rankingInput;
 	}
 
-	//for ranking team - getToken(the string we pass out)
-	public String createRankingJSON(RankingOutput rankingOutput) {
-		String jsonText = JSONValue.toJSONString(rankingOutput.indexMap);
+	// for ranking team - getToken(the string we pass out)
+	public String createRankingJSON(ArrayList<RankingOutput> rankingOutput) {
+		JSONObject ret = new JSONObject();
+		for (int i = 0; i < rankingOutput.size(); ++i) {//fore every given ngram
+			JSONObject tmp = new JSONObject();
+			for (String url : rankingOutput.get(i).ngramIndex.keySet()) {//for every url
+				JSONArray indexesOfNgram_json = new JSONArray();
+				ArrayList<Integer> indexesOfNgram = rankingOutput.get(i).ngramIndex.get(url);
+				for (int k = 0; k < indexesOfNgram.size(); ++k) {//for every index of url
+					indexesOfNgram_json.add(indexesOfNgram.get(k));
+				}
+				tmp.put(url,indexesOfNgram_json);
+			}
+			ret.put(rankingOutput.get(i).ngram, tmp);
+		}
+		String jsonText = ret.toJSONString();
 		return jsonText;
 	}
 
-	//helper function for readTextTransformJSON()
+	// helper function for readTextTransformJSON()
 	public static void ensureNgramListSize(ArrayList<HashMap<String, ArrayList<Integer>>> list, int size) {
 		list.ensureCapacity(size);
 		while (list.size() < size) {
