@@ -1,4 +1,4 @@
-package com.indexer.webApi;
+package com.indexer.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.Test;
+
+import com.indexer.webApi.RankingOutput;
+import com.indexer.webApi.parseJson;
 
 public class parseJsonTests {
 	@Test

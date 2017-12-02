@@ -1,4 +1,4 @@
-package com.indexer.webApi;
+package com.indexer.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
