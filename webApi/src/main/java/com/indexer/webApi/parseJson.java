@@ -5,8 +5,6 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
-import com.indexer.index.TokenData;;
-
 
 public class parseJson {
 	// for text transform team - setToken
@@ -75,17 +73,17 @@ public class parseJson {
 	}
 
 	// for ranking team - getToken(the string we pass out)
-	public String createRankingJSON(ArrayList<RankingOutput> rankingOutput) {
+	public static String createRankingJSON(ArrayList<RankingOutput> rankingOutput) {
 		JSONObject ret = new JSONObject();
-		for (int i = 0; i < rankingOutput.size(); ++i) {//fore every given ngram
+		for (int i = 0; i < rankingOutput.size(); ++i) {// fore every given ngram
 			JSONObject tmp = new JSONObject();
-			for (String url : rankingOutput.get(i).ngramIndex.keySet()) {//for every url
+			for (String url : rankingOutput.get(i).ngramIndex.keySet()) {// for every url
 				JSONArray indexesOfNgram_json = new JSONArray();
 				ArrayList<Integer> indexesOfNgram = rankingOutput.get(i).ngramIndex.get(url).indicies;
-				for (int k = 0; k < indexesOfNgram.size(); ++k) {//for every index of url
+				for (int k = 0; k < indexesOfNgram.size(); ++k) {// for every index of url
 					indexesOfNgram_json.add(indexesOfNgram.get(k));
 				}
-				tmp.put(url,indexesOfNgram_json);
+				tmp.put(url, indexesOfNgram_json);
 			}
 			ret.put(rankingOutput.get(i).ngram, tmp);
 		}

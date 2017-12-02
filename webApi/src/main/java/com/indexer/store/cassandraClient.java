@@ -1,5 +1,6 @@
 package com.indexer.store;
 
+import java.util.ArrayList;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
@@ -16,7 +17,7 @@ public class cassandraClient {
 		try {
 			cluster = Cluster.builder().addContactPoints(CONTACT_POINTS).withPort(PORT).build();
 			session = cluster.connect();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new Exception("Connection to Cassandra failed, possibly Cassandra not started or still starting");
 		}
 		System.out.println("Connected to cluster:" + cluster.getMetadata().getClusterName());
@@ -28,11 +29,16 @@ public class cassandraClient {
 
 	public void addWebinfo(TextTransInput input) {
 		session.execute(
-				"INSERT INTO webinfo.data (url,time,json) VALUES ('rpi.edu','now','" + input.originalJson + "');");//TODO
+				"INSERT INTO webinfo.data (url,time,json) VALUES ('rpi.edu','now','" + input.originalJson + "');");// TODO
 	}
 
-	public void getWebinfo(String url) {
+	public ArrayList<String> getWebinfo(String url) {
 		ResultSet results = session.execute("SELECT * FROM webinfo.data WHERE url = '" + url + "';");
-		System.out.println(results.all());
+		ArrayList<String> ret = new ArrayList<String>();
+		for (Row row : results) {
+			String json = row.getString(2);
+			ret.add(json);
+		}
+		return ret;
 	}
 }

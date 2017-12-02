@@ -1,8 +1,12 @@
 package com.indexer.webApi;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.indexer.index.OverallIndex;
 import com.indexer.store.cassandraClient;
 
 @RestController
@@ -24,20 +28,24 @@ public class WebApiApplication {
     }
     
     //for ranking team
+    // test with:
+    //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d 'some tokens' http://localhost:8080/getToken
     @RequestMapping(value="/getToken", method=RequestMethod.POST, consumes="text/plain")
     public String getToken(@RequestBody String input) {
-    	RankingInput ret = parseJson.readRankingJSON(input);
-        return "result to ranking";
-        // test with:
-        //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d 'some tokens' http://localhost:8080/getToken
+    	RankingInput rankingInput = parseJson.readRankingJSON(input);
+    	ArrayList<RankingOutput> tmp = OverallIndex.getNgramData(rankingInput);
+    	String ret = parseJson.createRankingJSON(tmp);
+        return "result to ranking";//TODO return ret
     }
     
     //for text transform team
+    // test with:
+    //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d '{"name":"value"}' http://localhost:8080/setToken
     @RequestMapping(value="/setToken", method=RequestMethod.POST, consumes="text/plain")
     public void setToken(@RequestBody String input) {
-    	  System.out.println(input);
-          // test with:
-          //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d '{"name":"value"}' http://localhost:8080/setToken
+    	  TextTransInput textTransInput = parseJson.readTextTransformJSON(input);
+    	  database.addWebinfo(textTransInput);
+    	  //TODO add into index
     }
 
     public static void main(String[] args) {

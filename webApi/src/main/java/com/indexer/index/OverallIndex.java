@@ -8,9 +8,9 @@ import com.indexer.webApi.TextTransInput;
 
 public class OverallIndex {
 	private DocumentIndex docIndex;
-	private TokenIndex tIndex;
+	private static TokenIndex tIndex;
 	
-	public ArrayList<RankingOutput> getNgramData(RankingInput rIn){
+	public static ArrayList<RankingOutput> getNgramData(RankingInput rIn){
 		ArrayList<RankingOutput> rOut = new ArrayList<RankingOutput>();
 		for(int i = 0; i < rIn.ngrams.size(); i++) {
 			String token = rIn.ngrams.get(i); 
