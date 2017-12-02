@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TextTransInput {
-<<<<<<< HEAD
 	public String url;
 	public String title; //WebPage title -> could be Null
 	public int titleIndex; // Could be null only if no title
