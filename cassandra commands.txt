@@ -1,0 +1,12 @@
+service cassandra start
+
+DESCRIBE keyspaces;
+CREATE KEYSPACE WEBINFO WITH REPLICATION= { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
+USE WEBINFO;
+CREATE TABLE DATA(URL TEXT,TIME TIMESTAMP,JSON TEXT,PRIMARY KEY (URL, TIME));
+
+DESCRIBE DATA;
+SELECT * FROM DATA ;
+INSERT INTO webinfo.data (url,time,json) VALUES ('rpi.edu','now','[json]');
+DELETE FROM DATA WHERE URL='rpi.edu';
+
