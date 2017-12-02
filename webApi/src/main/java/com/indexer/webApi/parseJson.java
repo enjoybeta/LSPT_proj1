@@ -47,6 +47,7 @@ public class parseJson {
 			e.printStackTrace();// cast string to int
 			return null;
 		}
+		textTransInput.originalJson = jsonStr;
 		return textTransInput;
 	}
 

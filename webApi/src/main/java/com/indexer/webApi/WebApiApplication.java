@@ -3,11 +3,14 @@ package com.indexer.webApi;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
+import com.indexer.store.cassandraClient;
 
 @RestController
 @EnableAutoConfiguration
 public class WebApiApplication {
-
+	private static SpringApplication app;
+	private static cassandraClient database = new cassandraClient();
+	
     @RequestMapping("/")
     String home() {
         return "/stopWords	/getToken	/setToken";
@@ -29,7 +32,7 @@ public class WebApiApplication {
         //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d 'some tokens' http://localhost:8080/getToken
     }
     
-  //for text transform team
+    //for text transform team
     @RequestMapping(value="/setToken", method=RequestMethod.POST, consumes="text/plain")
     public void setToken(@RequestBody String input) {
     	  System.out.println(input);
@@ -38,7 +41,9 @@ public class WebApiApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(WebApiApplication.class, args);
+    	database.init();
+    	app = new SpringApplication(WebApiApplication.class);
+        app.run(args);
     }
 
 }

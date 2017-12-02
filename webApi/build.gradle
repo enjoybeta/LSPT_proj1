@@ -25,6 +25,8 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile group: 'com.datastax.cassandra', name: 'cassandra-driver-core', version: '3.3.2'
+	compile ('com.googlecode.json-simple:json-simple:1.1.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile 'com.googlecode.json-simple:json-simple:1.1.1'
 }
