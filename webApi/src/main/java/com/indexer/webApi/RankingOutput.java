@@ -3,7 +3,9 @@ package com.indexer.webApi;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.indexer.index.TokenData;
 public class RankingOutput {
-	String ngram;
-	HashMap<String,ArrayList<Integer>> ngramIndex = new HashMap<String,ArrayList<Integer>>();
+	public String ngram;
+	//string = url, arrayList is the indicies
+	public HashMap<String, TokenData> ngramIndex = new HashMap<String,TokenData>();
 }

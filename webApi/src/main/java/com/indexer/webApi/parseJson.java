@@ -5,6 +5,8 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
+import com.indexer.index.TokenData;;
+
 
 public class parseJson {
 	// for text transform team - setToken
@@ -78,7 +80,7 @@ public class parseJson {
 			JSONObject tmp = new JSONObject();
 			for (String url : rankingOutput.get(i).ngramIndex.keySet()) {//for every url
 				JSONArray indexesOfNgram_json = new JSONArray();
-				ArrayList<Integer> indexesOfNgram = rankingOutput.get(i).ngramIndex.get(url);
+				ArrayList<Integer> indexesOfNgram = rankingOutput.get(i).ngramIndex.get(url).indicies;
 				for (int k = 0; k < indexesOfNgram.size(); ++k) {//for every index of url
 					indexesOfNgram_json.add(indexesOfNgram.get(k));
 				}
