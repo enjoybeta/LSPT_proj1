@@ -12,11 +12,15 @@ public class cassandraClient {
 	private Cluster cluster;
 	private Session session;
 
-	public void init() {
-		cluster = Cluster.builder().addContactPoints(CONTACT_POINTS).withPort(PORT).build();
-		session = cluster.connect();
+	public void init() throws Exception {
+		try {
+			cluster = Cluster.builder().addContactPoints(CONTACT_POINTS).withPort(PORT).build();
+			session = cluster.connect();
+		}catch(Exception e) {
+			throw new Exception("Connection to Cassandra failed, possibly Cassandra not started or still starting");
+		}
 		System.out.println("Connected to cluster:" + cluster.getMetadata().getClusterName());
-	}//TODO try catch
+	}
 
 	public void end() {
 		cluster.close();

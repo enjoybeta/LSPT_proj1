@@ -41,7 +41,12 @@ public class WebApiApplication {
     }
 
     public static void main(String[] args) {
-    	database.init();
+    	try {
+			database.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
     	app = new SpringApplication(WebApiApplication.class);
         app.run(args);
     }
