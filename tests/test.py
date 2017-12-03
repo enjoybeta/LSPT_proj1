@@ -24,7 +24,6 @@ def setTokens():
         headers = {'Accept' : 'application/json', 'Content-Type' : 'text/plain'}
         r = requests.post("http://127.0.0.1:8080/setToken", data=dataStr,headers=headers)
         print(r.text)
-        break
         
 if __name__ == "__main__":
     main(sys.argv)

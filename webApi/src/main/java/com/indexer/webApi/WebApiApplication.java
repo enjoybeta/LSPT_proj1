@@ -27,6 +27,7 @@ public class WebApiApplication {
         	String ret = parseJson.createTop50JSON(tmp);
         	return ret;
     	}catch(Exception e) {
+    		e.printStackTrace();
     		return "Failed";
     	}
     }

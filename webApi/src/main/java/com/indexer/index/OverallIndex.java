@@ -7,8 +7,8 @@ import com.indexer.webApi.RankingOutput;
 import com.indexer.webApi.TextTransInput;
 
 public class OverallIndex {
-	private static DocumentIndex docIndex;
-	private static TokenIndex tIndex;
+	private static DocumentIndex docIndex = new DocumentIndex();
+	private static TokenIndex tIndex = new TokenIndex();
 	
 	public static ArrayList<RankingOutput> getNgramData(RankingInput rIn){
 		ArrayList<RankingOutput> rOut = new ArrayList<RankingOutput>();
@@ -21,7 +21,6 @@ public class OverallIndex {
 			rOut.add(nextROUTElem);
 			//ngramIndex = Map(url -> indicies).
 		}
-		
 		return rOut;
 	}
 	
