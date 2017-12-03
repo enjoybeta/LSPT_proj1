@@ -7,7 +7,7 @@ import com.indexer.webApi.RankingOutput;
 import com.indexer.webApi.TextTransInput;
 
 public class OverallIndex {
-	private DocumentIndex docIndex;
+	private static DocumentIndex docIndex;
 	private static TokenIndex tIndex;
 	
 	public static ArrayList<RankingOutput> getNgramData(RankingInput rIn){
@@ -30,7 +30,7 @@ public class OverallIndex {
 		tIndex.removeDoc(url);
 	}
 	//ArrayList<RankingOutput>
-	public void addDocument(TextTransInput txtInput) {
+	public static void addDocument(TextTransInput txtInput) {
 		//Takes in a given documents "data" (url, tokens to be indexed and doc metadata) then 
 		//stores properly in the current index.
 		
@@ -39,11 +39,11 @@ public class OverallIndex {
 		tIndex.indexDocument(txtInput.ngrams, txtInput.url);
 	}
 
-	public ArrayList<String> getTop50StopWords(){
+	public static ArrayList<String> getTop50StopWords(){
 		return tIndex.getTop50StopWords();
 	}
 	
-	private long findTotalTokenNumber(TextTransInput txtInput) {
+	private static long findTotalTokenNumber(TextTransInput txtInput) {
 		long totalTokens = 0;
 		for(int i =0; i < txtInput.ngrams.size(); i++) {
 			HashMap<String,ArrayList<Integer>> n_gramMap = (HashMap<String,ArrayList<Integer>>)(txtInput.ngrams).get(i);

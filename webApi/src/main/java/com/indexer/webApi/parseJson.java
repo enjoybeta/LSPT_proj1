@@ -91,6 +91,15 @@ public class parseJson {
 		return jsonText;
 	}
 
+	public static String createTop50JSON(ArrayList<String> stopWords) {
+		JSONArray ret = new JSONArray();
+		for (int i = 0; i < stopWords.size(); ++i) {// for each stopword
+			ret.add(stopWords.get(i));
+		}
+		String jsonText = ret.toJSONString();
+		return jsonText;
+	}
+
 	// helper function for readTextTransformJSON()
 	public static void ensureNgramListSize(ArrayList<HashMap<String, ArrayList<Integer>>> list, int size) {
 		list.ensureCapacity(size);

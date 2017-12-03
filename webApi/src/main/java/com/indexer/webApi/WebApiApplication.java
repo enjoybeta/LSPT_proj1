@@ -17,12 +17,14 @@ public class WebApiApplication {
 	
     @RequestMapping("/")
     String home() {
-        return "/stopWords	/getToken	/setToken";
+        return "/stopWords	/getToken	/setToken	/health	/info";
     }
     
     @RequestMapping("/stopWords")
     String stopWords() {
-        return "stop word list";
+    	ArrayList<String> tmp = OverallIndex.getTop50StopWords();
+    	String ret = parseJson.createTop50JSON(tmp);
+        return ret;
         // test with:
         //http://localhost:8080/stopWords
     }
@@ -35,7 +37,7 @@ public class WebApiApplication {
     	RankingInput rankingInput = parseJson.readRankingJSON(input);
     	ArrayList<RankingOutput> tmp = OverallIndex.getNgramData(rankingInput);
     	String ret = parseJson.createRankingJSON(tmp);
-        return "result to ranking";//TODO return ret
+        return ret;
     }
     
     //for text transform team
@@ -45,7 +47,7 @@ public class WebApiApplication {
     public void setToken(@RequestBody String input) {
     	  TextTransInput textTransInput = parseJson.readTextTransformJSON(input);
     	  database.addWebinfo(textTransInput);
-    	  //TODO add into index
+    	  OverallIndex.addDocument(textTransInput);
     }
 
     public static void main(String[] args) {
