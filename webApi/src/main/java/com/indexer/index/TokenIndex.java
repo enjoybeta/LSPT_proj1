@@ -118,7 +118,7 @@ public class TokenIndex {
 
 	private void addStopWord(String token, TokenData tData) {
 		StopWord w = new StopWord(token, tData.ngramSize, tData.indicies.size());
-		if(!stopWordList.contains(w) && (stopWordList.size() <= 0 || w.occurences > stopWordList.peek().occurences) { 	
+		if(!stopWordList.contains(w) && (stopWordList.size() <= 0 || w.occurences > stopWordList.peek().occurences)) { 	
 			stopWordList.poll();
 			stopWordList.add(w);
 		} else {
