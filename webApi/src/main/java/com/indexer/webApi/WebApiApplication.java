@@ -40,13 +40,13 @@ public class WebApiApplication {
     	RankingInput rankingInput;
 		try {
 			rankingInput = parseJson.readRankingJSON(input);
+			ArrayList<RankingOutput> tmp = OverallIndex.getNgramData(rankingInput);
+	    	String ret = parseJson.createRankingJSON(tmp);
+	    	return ret;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "Failed";
 		}
-    	ArrayList<RankingOutput> tmp = OverallIndex.getNgramData(rankingInput);
-    	String ret = parseJson.createRankingJSON(tmp);
-        return ret;
     }
     
     //for text transform team
