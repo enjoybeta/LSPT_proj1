@@ -132,10 +132,10 @@ public class TokenIndex {
 			stopWordList.add(w);
 		}
 	}
-	public HashMap<String, TokenData> getTokenData(String token) {
-		// TODO Auto-generated method stub
-		index.get(token);
-		return null;
+	public HashMap<String, TokenData> getTokenData(String token) {		
+		return index.get(token);
 	}
 	
 }
+
+
