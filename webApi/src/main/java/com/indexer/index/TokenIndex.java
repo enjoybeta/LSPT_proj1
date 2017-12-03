@@ -105,19 +105,23 @@ public class TokenIndex {
 			String token = pair.getKey();
 			Map<String, TokenData> tDatas = pair.getValue();
 			Iterator it2 = tDatas.entrySet().iterator();
+			long occurences = 0;
+			int nGramSize = -1;
 			while(it2.hasNext()) {
 				Map.Entry<String, TokenData> pairOfUrlAndTData = (Map.Entry<String, TokenData>)it2.next();
 				String url = pairOfUrlAndTData.getKey();
 				TokenData tData = pairOfUrlAndTData.getValue();
-				addStopWord(token, tData);
+				nGramSize = tData.ngramSize;
+				occurences += tData.indicies.size();
 			}
+			addStopWord(token, nGramSize, occurences);
 			
 		}
 		
 	}
 
-	private void addStopWord(String token, TokenData tData) {
-		StopWord w = new StopWord(token, tData.ngramSize, tData.indicies.size());
+	private void addStopWord(String token, int ngramSize, long occurencesIn) {
+		StopWord w = new StopWord(token, ngramSize, occurencesIn);
 		if(!stopWordList.contains(w) && (stopWordList.size() <= 0 || w.occurences > stopWordList.peek().occurences)) { 	
 			stopWordList.poll();
 			stopWordList.add(w);

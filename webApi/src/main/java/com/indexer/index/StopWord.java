@@ -6,11 +6,11 @@ public class StopWord implements Comparable<StopWord> {
 	int n_gram_size;
 	long occurences;
 	
-	public StopWord(String word, int n_gram_size, int occurences) {
+	public StopWord(String word, int n_gram_size, long occurencesIn) {
 		super();
 		this.word = word;
 		this.n_gram_size = n_gram_size;
-		this.occurences = occurences;
+		this.occurences = occurencesIn;
 	}
 
 	@Override
