@@ -1,0 +1,66 @@
+{
+    "url" : "3.com",
+	"title" : {
+		"title" : "The cookie thief",
+		"indicies" : [ 7 ]
+	},
+	"metadata" : {
+		"author": "andy"
+	},
+	"ngrams" : {
+		"1" : {
+			"a" : [ 0, 4 ],
+			"man" : [ 1 ],
+			"once" : [ 2 ],
+			"stole" : [ 3 ],
+			"cookie" : [ 5, 8 ],
+			"from" : [ 6 ],
+			"the" : [ 7 ],
+			"jar": [ 9 ],
+			"he" : [ 10 ],
+			"was" : [ 11 ],
+			"not" : [ 12 ],
+			"allowed" : [ 13 ],
+			"to" : [ 14 ],
+			"eat" : [ 15 ],
+			"cookies" : [ 16 ],
+			"anymore" : [ 17 ]
+		},
+		"2" : {
+			"a man" : [ 0 ],
+			"man once" : [ 1 ],
+			"once stole" : [ 2 ],
+			"stole a" : [ 3 ],
+			"a cookie" : [ 4 ],
+			"cookie from" : [ 5 ],
+			"from the" : [ 6 ],
+			"the cookie" : [ 7 ],
+			"cookie jar" : [ 8 ],
+			"jar he" : [ 9 ],
+			"he was" : [ 10 ],
+			"was not" : [ 11 ],
+			"allowed to" : [ 12 ],
+			"to eat" : [ 13 ],
+			"eat cookies" : [ 14 ],
+			"cookies anymore" : [ 15 ]
+		},
+		"3" : {
+			"a man once" : [ 0 ],
+			"man once stole" : [ 1 ],
+			"once stole a" : [ 2 ],
+			"stole a cookie" : [ 3 ],
+			"a cookie from" : [ 4 ],
+			"cookie from the " : [ 5 ],
+			"from the cookie" : [ 6 ],
+			"the cookie jar" : [ 7 ],
+			"cookie jar he" : [ 8 ],
+			"jar he was" : [ 9 ],
+			"he was not" : [ 10 ],
+			"was not allowed" : [ 11 ],
+			"not allowed to" : [ 12 ],
+			"allowed to eat" : [ 13 ],
+			"to eat cookies" : [ 14 ],
+			"eat cookies anymore" : [ 15 ],
+		}
+	}
+}

@@ -1,0 +1,38 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.indexer'
+version = '0.1'
+sourceCompatibility = 9
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile group: 'com.datastax.cassandra', name: 'cassandra-driver-core', version: '3.3.2'
+	compile ('com.googlecode.json-simple:json-simple:1.1.1')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.indexer.webApi.WebApiApplication'
+    }
+}
