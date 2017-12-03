@@ -35,7 +35,11 @@ public class databaseTests {
 		tmp2.put("hello", new ArrayList<Integer>(Arrays.asList(5, 10)));
 		tmp.ngrams.add(tmp2);
 		tmp.originalJson = "[json]";
-		database.addWebinfo(tmp);
+		try {
+			database.addWebinfo(tmp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		ArrayList<String> tmp3 = database.getWebinfo("rpi.edu");
 		System.out.println("url:" + "rpi.edu");
 		for (String value : tmp3) {

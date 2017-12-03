@@ -8,7 +8,7 @@ import org.json.simple.parser.*;
 
 public class parseJson {
 	// for text transform team - setToken
-	public static TextTransInput readTextTransformJSON(String jsonStr) {
+	public static TextTransInput readTextTransformJSON(String jsonStr) throws Exception {
 		TextTransInput textTransInput;
 		try {
 			textTransInput = new TextTransInput();
@@ -17,7 +17,7 @@ public class parseJson {
 			textTransInput.title = (String) titleObj.get("title");
 			if (textTransInput.title != null) {
 				JSONArray titleIndexList = (JSONArray) titleObj.get("indicies");
-				textTransInput.titleIndex = Integer.valueOf((String) titleIndexList.get(0));
+				textTransInput.titleIndex = ((Long) titleIndexList.get(0)).intValue();
 			}
 
 			JSONObject metadataObj = (JSONObject) wholeJson.get("metadata");
@@ -33,26 +33,28 @@ public class parseJson {
 					ArrayList<Integer> index = new ArrayList<Integer>();
 					JSONArray indexes = (JSONArray) gramObj.get(word);
 					for (Object i : indexes) {
-						index.add(Integer.valueOf((String) i));
+						index.add(((Long) i).intValue());
 					}
 					textTransInput.ngrams.get(Integer.valueOf((String) n) - 1).put((String) word, index);
 				}
 			}
 		} catch (ParseException e) {
-			System.err.println("ERROR");
+			System.err.println("ERROR input");
+			System.err.println(jsonStr);
 			e.printStackTrace();// JSON Parsing error
-			return null;
+			throw new Exception("parsing failed");
 		} catch (NumberFormatException e) {
-			System.err.println("ERROR");
+			System.err.println("ERROR input");
+			System.err.println(jsonStr);
 			e.printStackTrace();// cast string to int
-			return null;
+			throw new Exception("parsing failed");
 		}
 		textTransInput.originalJson = jsonStr;
 		return textTransInput;
 	}
 
 	// for ranking team - getToken(the string they pass in)
-	public static RankingInput readRankingJSON(String jsonStr) {
+	public static RankingInput readRankingJSON(String jsonStr) throws Exception {
 		RankingInput rankingInput;
 		try {
 			rankingInput = new RankingInput();
@@ -63,11 +65,11 @@ public class parseJson {
 		} catch (ParseException e) {
 			System.err.println("ERROR");
 			e.printStackTrace();// cast string to int
-			return null;
+			throw new Exception("parsing failed");
 		} catch (NumberFormatException e) {
 			System.err.println("ERROR");
 			e.printStackTrace();// cast string to int
-			return null;
+			throw new Exception("parsing failed");
 		}
 		return rankingInput;
 	}
@@ -75,7 +77,7 @@ public class parseJson {
 	// for ranking team - getToken(the string we pass out)
 	public static String createRankingJSON(ArrayList<RankingOutput> rankingOutput) {
 		JSONObject ret = new JSONObject();
-		for (int i = 0; i < rankingOutput.size(); ++i) {// fore every given ngram
+		for (int i = 0; i < rankingOutput.size(); ++i) {// for every given ngram
 			JSONObject tmp = new JSONObject();
 			for (String url : rankingOutput.get(i).ngramIndex.keySet()) {// for every url
 				JSONArray indexesOfNgram_json = new JSONArray();

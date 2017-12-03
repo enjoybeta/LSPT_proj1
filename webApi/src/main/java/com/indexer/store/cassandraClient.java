@@ -27,9 +27,15 @@ public class cassandraClient {
 		cluster.close();
 	}
 
-	public void addWebinfo(TextTransInput input) {
-		session.execute(
-				"INSERT INTO webinfo.data (url,time,json) VALUES ('rpi.edu','now','" + input.originalJson + "');");// TODO
+	public void addWebinfo(TextTransInput input) throws Exception {
+		try {
+			session.execute(
+					"INSERT INTO webinfo.data (url,time,json) VALUES ('rpi.edu','now','" + input.originalJson + "');");
+		}catch (Exception e) {
+			System.err.println(input.originalJson);
+			throw new Exception("Insertion into cassandra failed");
+		}
+		
 	}
 
 	public ArrayList<String> getWebinfo(String url) {
