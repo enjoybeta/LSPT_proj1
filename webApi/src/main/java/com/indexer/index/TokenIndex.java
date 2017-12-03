@@ -71,7 +71,7 @@ public class TokenIndex {
 			lastStopWordUpdate = Calendar.getInstance(tz1, locale1);
 			accumulateStopWords();
 		}
-		if(check20MinsHavePassed()) {
+		if(check20MinsHavePassed() || stopWordList.size() < 50) {
 			accumulateStopWords();
 		}
 		ArrayList<String> returnStopWords = convertStopWordsToArrayList();
