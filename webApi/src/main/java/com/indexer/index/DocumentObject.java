@@ -27,10 +27,24 @@ public class DocumentObject {
 	
 	public DocumentObject(String titleIn, int titleIndex, HashMap<String, String> metaData, String url, long tokenNum) {
 		// TODO Auto-generated constructor stub
-		this.title = new String(titleIn);
-		this.titleIndex = titleIndex;
-		this.metaDataFields = (HashMap<String, String>)metaData.clone();
-		this.url = url;
+		if(titleIn != null) {
+			this.title = new String(titleIn);
+			this.titleIndex = titleIndex;
+		} else {
+			this.title = null;
+			this.titleIndex = -1;
+		}
+		if(metaData != null) {
+			this.metaDataFields = (HashMap<String, String>)metaData.clone();
+		} else {
+			this.metaDataFields = null;
+		}
+		if(url != null) {
+			this.url = url;
+		} else {
+			this.url = null;
+		}
+		
 		this.uniqueTokenNumber = tokenNum;
 		Locale locale1 = Locale.US;
 		TimeZone tz1 = TimeZone.getTimeZone("EST");
