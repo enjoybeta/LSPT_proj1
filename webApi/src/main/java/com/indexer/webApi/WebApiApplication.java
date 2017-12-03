@@ -1,11 +1,9 @@
 package com.indexer.webApi;
 
 import java.util.ArrayList;
-
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
-
 import com.indexer.index.OverallIndex;
 import com.indexer.store.cassandraClient;
 
@@ -20,13 +18,17 @@ public class WebApiApplication {
         return "/stopWords	/getToken	/setToken	/health	/info";
     }
     
+    // test with:
+    //http://localhost:8080/stopWords
     @RequestMapping("/stopWords")
     String stopWords() {
-    	ArrayList<String> tmp = OverallIndex.getTop50StopWords();
-    	String ret = parseJson.createTop50JSON(tmp);
-        return ret;
-        // test with:
-        //http://localhost:8080/stopWords
+    	try {
+    		ArrayList<String> tmp = OverallIndex.getTop50StopWords();
+        	String ret = parseJson.createTop50JSON(tmp);
+        	return ret;
+    	}catch(Exception e) {
+    		return "Failed";
+    	}
     }
     
     //for ranking team
@@ -34,7 +36,13 @@ public class WebApiApplication {
     //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d 'some tokens' http://localhost:8080/getToken
     @RequestMapping(value="/getToken", method=RequestMethod.POST, consumes="text/plain")
     public String getToken(@RequestBody String input) {
-    	RankingInput rankingInput = parseJson.readRankingJSON(input);
+    	RankingInput rankingInput;
+		try {
+			rankingInput = parseJson.readRankingJSON(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "Failed";
+		}
     	ArrayList<RankingOutput> tmp = OverallIndex.getNgramData(rankingInput);
     	String ret = parseJson.createRankingJSON(tmp);
         return ret;
@@ -45,9 +53,15 @@ public class WebApiApplication {
     //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d '{"name":"value"}' http://localhost:8080/setToken
     @RequestMapping(value="/setToken", method=RequestMethod.POST, consumes="text/plain")
     public void setToken(@RequestBody String input) {
-    	  TextTransInput textTransInput = parseJson.readTextTransformJSON(input);
-    	  database.addWebinfo(textTransInput);
-    	  OverallIndex.addDocument(textTransInput);
+    	System.out.println("trying to set token");
+    	TextTransInput textTransInput = null;
+		try {
+			textTransInput = parseJson.readTextTransformJSON(input);
+			database.addWebinfo(textTransInput);
+			OverallIndex.addDocument(textTransInput);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     public static void main(String[] args) {
