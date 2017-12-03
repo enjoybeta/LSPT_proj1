@@ -14,6 +14,10 @@ public class parseJson {
 			textTransInput = new TextTransInput();
 			JSONObject wholeJson = (JSONObject) new JSONParser().parse(jsonStr);
 			textTransInput.url = (String) wholeJson.get("url");
+			if(textTransInput.url == null) {
+				System.err.println("input from texttrans's url is null");
+				throw new Exception("input from texttrans's url is null");
+			}
 			JSONObject titleObj = (JSONObject) wholeJson.get("title");
 			textTransInput.title = (String) titleObj.get("title");
 			if (textTransInput.title != null) {
@@ -39,14 +43,14 @@ public class parseJson {
 				}
 			}
 		} catch (ParseException e) {
-			System.err.println("ERROR input");
 			System.err.println(jsonStr);
 			e.printStackTrace();// JSON Parsing error
 			throw new Exception("parsing failed");
 		} catch (NumberFormatException e) {
-			System.err.println("ERROR input");
 			System.err.println(jsonStr);
 			e.printStackTrace();// cast string to int
+			throw new Exception("parsing failed");
+		} catch (Exception e) {
 			throw new Exception("parsing failed");
 		}
 		textTransInput.originalJson = jsonStr;
