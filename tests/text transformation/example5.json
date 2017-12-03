@@ -1,0 +1,44 @@
+{
+	"title" : {
+		"title" : "Android Versions",
+		"indicies" : [ 7 ]
+	},
+	"beantadata" : {
+		"author": "Google"
+	},
+	"ngrams" : {
+		"1" : {
+			"oreo" : [ 0 ],
+			"nougat" : [ 1 ],
+			"marshmallow" : [ 2 ],
+			"lollipop" : [ 3 ],
+			"kitkat" : [ 4 ],
+			"jelly" : [ 5 ],
+			"bean" : [ 6 ],
+			"ice": [ 7 ],
+			"cream" : [ 8 ],
+			"sandwich" : [ 9 ]
+		},
+		"2" : {
+			"oreo nougat" : [ 0 ],
+			"nougat marshmallow" : [ 1 ],
+			"marshmallow lollipop" : [ 2 ],
+			"lollipop kitkat" : [ 3 ],
+			"kitkat jelly" : [ 4 ],
+			"jelly bean" : [ 5 ],
+			"bean ice" : [ 6 ],
+			"ice cream": [ 7 ],
+			"cream sandwich" : [ 8 ]
+		},
+		"3" : {
+			"oreo nougat marshmallow" : [ 0 ],
+			"nougat marshmallow lollipop" : [ 1 ],
+			"marshmallow lollipop kitkat" : [ 2 ],
+			"lollipop kitkat jelly" : [ 3 ],
+			"kitkat jelly bean" : [ 4 ],
+			"jelly bean ice" : [ 5 ],
+			"bean ice cream" : [ 6 ],
+			"ice cream sandwich": [ 7 ]
+		}
+	}
+}

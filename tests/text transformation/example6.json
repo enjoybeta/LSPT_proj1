@@ -1,0 +1,44 @@
+{
+	"title" : {
+		"title" : "C++ is evil",
+		"indicies" : [ 7 ]
+	},
+	"betadata" : {
+		"author": "DS"
+	},
+	"ngrams" : {
+		"1" : {
+			"C++" : [ 0 ],
+			"is" : [ 1 ],
+			"an" : [ 2 ],
+			"evil" : [ 3 ],
+			"programming" : [ 4 ],
+			"language" : [ 5 ],
+			"be" : [ 6 ],
+			"careful": [ 7 ],
+			"with" : [ 8 ],
+			"it" : [ 9 ]
+		},
+		"2" : {
+			"C++ is" : [ 0 ],
+			"is an" : [ 1 ],
+			"an evil" : [ 2 ],
+			"evil programming" : [ 3 ],
+			"programming language" : [ 4 ],
+			"language be" : [ 5 ],
+			"be careful" : [ 6 ],
+			"careful with": [ 7 ],
+			"with it" : [ 8 ]
+		},
+		"3" : {
+			"C++ is an" : [ 0 ],
+			"is an evil" : [ 1 ],
+			"an evil programming" : [ 2 ],
+			"evil programming language" : [ 3 ],
+			"programming language be" : [ 4 ],
+			"language be careful" : [ 5 ],
+			"be careful with" : [ 6 ],
+			"careful with it": [ 7 ]
+		}
+	}
+}
