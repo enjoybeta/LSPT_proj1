@@ -45,6 +45,9 @@ public class OverallIndex {
 	
 	private static long findTotalTokenNumber(TextTransInput txtInput) {
 		long totalTokens = 0;
+		if(txtInput.ngrams == null) {
+			return totalTokens;
+		}
 		for(int i =0; i < txtInput.ngrams.size(); i++) {
 			HashMap<String,ArrayList<Integer>> n_gramMap = (HashMap<String,ArrayList<Integer>>)(txtInput.ngrams).get(i);
 			totalTokens += n_gramMap.entrySet().size(); //add the num of tokens in each hashmap to get total num of tokens
