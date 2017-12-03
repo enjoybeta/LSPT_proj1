@@ -79,6 +79,9 @@ public class parseJson {
 		JSONObject ret = new JSONObject();
 		for (int i = 0; i < rankingOutput.size(); ++i) {// for every given ngram
 			JSONObject tmp = new JSONObject();
+			if (rankingOutput.get(i).ngramIndex == null) {
+				continue;
+			}
 			for (String url : rankingOutput.get(i).ngramIndex.keySet()) {// for every url
 				JSONArray indexesOfNgram_json = new JSONArray();
 				ArrayList<Integer> indexesOfNgram = rankingOutput.get(i).ngramIndex.get(url).indicies;
