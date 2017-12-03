@@ -13,13 +13,13 @@ public class parseJson {
 		try {
 			textTransInput = new TextTransInput();
 			JSONObject wholeJson = (JSONObject) new JSONParser().parse(jsonStr);
+			textTransInput.url = (String) wholeJson.get("url");
 			JSONObject titleObj = (JSONObject) wholeJson.get("title");
 			textTransInput.title = (String) titleObj.get("title");
 			if (textTransInput.title != null) {
 				JSONArray titleIndexList = (JSONArray) titleObj.get("indicies");
 				textTransInput.titleIndex = ((Long) titleIndexList.get(0)).intValue();
 			}
-
 			JSONObject metadataObj = (JSONObject) wholeJson.get("metadata");
 			for (Object key : metadataObj.keySet()) {
 				textTransInput.metadata.put((String) key, (String) metadataObj.get(key));

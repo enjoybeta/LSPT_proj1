@@ -1,0 +1,45 @@
+{
+    "url" : "4.com",
+	"title" : {
+		"title" : "dear basketball",
+		"indicies" : [ 7 ]
+	},
+	"metadata" : {
+		"author": "andy"
+	},
+	"ngrams" : {
+		"1" : {
+			"dear" : [ 0 ],
+			"basketball" : [ 1 ],
+			"thank" : [ 2 ],
+			"you" : [ 3 ],
+			"for" : [ 4 ],
+			"allowing" : [ 5 ],
+			"me" : [ 6 ],
+			"to": [ 7 ],
+			"have" : [ 8 ],
+			"fun" : [ 9 ]
+		},
+		"2" : {
+			"dear basketball" : [ 0 ],
+			"basketball thank" : [ 1 ],
+			"thank you" : [ 2 ],
+			"you for" : [ 3 ],
+			"for allowing" : [ 4 ],
+			"allowing me" : [ 5 ],
+			"me to" : [ 6 ],
+			"to have": [ 7 ],
+			"have fun" : [ 8 ]
+		},
+		"3" : {
+			"dear basketball thank" : [ 0 ],
+			"basketball thank you" : [ 1 ],
+			"thank you for" : [ 2 ],
+			"you for allowing" : [ 3 ],
+			"for allowing me" : [ 4 ],
+			"allowing me to" : [ 5 ],
+			"me to have" : [ 6 ],
+			"to have fun": [ 7 ]
+		}
+	}
+}

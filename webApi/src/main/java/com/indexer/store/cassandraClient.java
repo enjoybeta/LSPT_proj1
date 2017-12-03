@@ -30,7 +30,7 @@ public class cassandraClient {
 	public void addWebinfo(TextTransInput input) throws Exception {
 		try {
 			session.execute(
-					"INSERT INTO webinfo.data (url,time,json) VALUES ('rpi.edu','now','" + input.originalJson + "');");
+					"INSERT INTO webinfo.data (url,time,json) VALUES ('" + input.url +"','now','" + input.originalJson + "');");
 		}catch (Exception e) {
 			System.err.println(input.originalJson);
 			throw new Exception("Insertion into cassandra failed");
