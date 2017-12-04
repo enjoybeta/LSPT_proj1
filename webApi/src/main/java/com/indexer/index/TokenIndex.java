@@ -130,7 +130,7 @@ public class TokenIndex {
 		} else if(!stopWordList.contains(w) && w.occurences > stopWordList.peek().occurences) {
 			stopWordList.poll();
 			stopWordList.add(w);
-		}  else {
+		}  else if(stopWordList.contains(w)) {
 			//this is updating a stopwords priority that was already in stopwords list.
 			stopWordList.remove(w);
 			stopWordList.add(w);
