@@ -101,6 +101,7 @@ public class TokenIndex {
 	private void accumulateStopWords() {
 		Iterator it = index.entrySet().iterator();
 		while(it.hasNext()) {
+			//go through all tokens.
 			Map.Entry<String, Map<String, TokenData>> pair = (Map.Entry<String, Map<String, TokenData>>)(it.next());
 			String token = pair.getKey();
 			Map<String, TokenData> tDatas = pair.getValue();
@@ -108,6 +109,7 @@ public class TokenIndex {
 			long occurences = 0;
 			int nGramSize = -1;
 			while(it2.hasNext()) {
+				//count the occurrences of a single word across all websites.
 				Map.Entry<String, TokenData> pairOfUrlAndTData = (Map.Entry<String, TokenData>)it2.next();
 				String url = pairOfUrlAndTData.getKey();
 				TokenData tData = pairOfUrlAndTData.getValue();
@@ -122,12 +124,14 @@ public class TokenIndex {
 
 	private void addStopWord(String token, int ngramSize, long occurencesIn) {
 		StopWord w = new StopWord(token, ngramSize, occurencesIn);
-		if(!stopWordList.contains(w) && (stopWordList.size() <= 0 || w.occurences > stopWordList.peek().occurences)) { 	
+		// this is technically o(1) b/c stopWordList is always len 50 so always log(50).
+		if(stopWordList.size() < 50) {
+			stopWordList.add(w);
+		} else if(!stopWordList.contains(w) && w.occurences > stopWordList.peek().occurences) {
 			stopWordList.poll();
 			stopWordList.add(w);
-		} else {
-			// this is technically o(1) b/c stopWordList is always len 50 so always log(50)
-			//this is updating a stopwords priority 
+		}  else {
+			//this is updating a stopwords priority that was already in stopwords list.
 			stopWordList.remove(w);
 			stopWordList.add(w);
 		}
