@@ -21,7 +21,8 @@ def setTokens():
     for fileName in glob.iglob('text transformation/*.json'):
         with open(fileName, 'r') as myfile:
             dataStr=myfile.read().replace('\n', '').replace('\t', '')
-        print(dataStr)
+        #print(dataStr)
+        print("Sending setToken as POST request to 127.0.0.1:8080")
         headers = {'Accept' : 'application/json', 'Content-Type' : 'text/plain'}
         r = requests.post("http://127.0.0.1:8080/setToken", data=dataStr,headers=headers)
         print(r.text)
@@ -30,7 +31,8 @@ def getTokens():
     for fileName in glob.iglob('ranking/*.json'):
         with open(fileName, 'r') as myfile:
             dataStr=myfile.read().replace('\n', '').replace('\t', '')
-        print(dataStr)
+        #print(dataStr)
+        print("Sending getToken as POST request to 127.0.0.1:8080")
         headers = {'Accept' : 'application/json', 'Content-Type' : 'text/plain'}
         r = requests.post("http://127.0.0.1:8080/getToken", data=dataStr,headers=headers)
         print(r.text)
