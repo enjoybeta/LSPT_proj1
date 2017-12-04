@@ -54,7 +54,6 @@ public class WebApiApplication {
     //curl -H "Accept: application/json" -H "Content-type: text/plain" -X POST -d '{"name":"value"}' http://localhost:8080/setToken
     @RequestMapping(value="/setToken", method=RequestMethod.POST, consumes="text/plain")
     public void setToken(@RequestBody String input) {
-    	System.out.println("trying to set token");
     	TextTransInput textTransInput = null;
 		try {
 			textTransInput = parseJson.readTextTransformJSON(input);
