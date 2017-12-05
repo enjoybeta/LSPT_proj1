@@ -15,21 +15,37 @@ public class parseJson {
 			JSONObject wholeJson = (JSONObject) new JSONParser().parse(jsonStr);
 			textTransInput.url = (String) wholeJson.get("url");
 			if(textTransInput.url == null) {
-				System.err.println("input from texttrans's url is null");
-				throw new Exception("input from texttrans's url is null");
+				System.err.println("no url");
+				throw new IllegalArgumentException("no url");
 			}
 			JSONObject titleObj = (JSONObject) wholeJson.get("title");
+			if(titleObj == null) {
+				System.err.println("no title");
+				throw new IllegalArgumentException("no title");
+			}
 			textTransInput.title = (String) titleObj.get("title");
 			if (textTransInput.title != null) {
 				JSONArray titleIndexList = (JSONArray) titleObj.get("indicies");
+				if(titleIndexList == null) {
+					System.err.println("no title indicies");
+					throw new IllegalArgumentException("no title indicies");
+				}
 				textTransInput.titleIndex = ((Long) titleIndexList.get(0)).intValue();
 			}
 			JSONObject metadataObj = (JSONObject) wholeJson.get("metadata");
+			if(metadataObj == null) {
+				System.err.println("no metadata");
+				throw new IllegalArgumentException("no metadata");
+			}
 			for (Object key : metadataObj.keySet()) {
 				textTransInput.metadata.put((String) key, (String) metadataObj.get(key));
 			}
 
 			JSONObject ngramsObj = (JSONObject) wholeJson.get("ngrams");
+			if(ngramsObj == null) {
+				System.err.println("no ngrams");
+				throw new IllegalArgumentException("no ngrams");
+			}
 			ensureNgramListSize(textTransInput.ngrams, ngramsObj.keySet().size());
 			for (Object n : ngramsObj.keySet()) {
 				JSONObject gramObj = (JSONObject) ngramsObj.get(n);
@@ -42,16 +58,16 @@ public class parseJson {
 					textTransInput.ngrams.get(Integer.valueOf((String) n) - 1).put((String) word, index);
 				}
 			}
-		} catch (ParseException e) {
+		} catch (IllegalArgumentException e) {
 			System.err.println(jsonStr);
-			e.printStackTrace();// JSON Parsing error
-			throw new Exception("parsing failed");
-		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("parsing failed-ParseException");
+		}  catch (ParseException e) {
 			System.err.println(jsonStr);
-			e.printStackTrace();// cast string to int
-			throw new Exception("parsing failed");
+			throw new IllegalArgumentException("parsing failed-ParseException");
 		} catch (Exception e) {
-			throw new Exception("parsing failed");
+			System.err.println(jsonStr);
+			e.printStackTrace();
+			throw new IllegalArgumentException("parsing failed-Exception");
 		}
 		textTransInput.originalJson = jsonStr;
 		return textTransInput;
