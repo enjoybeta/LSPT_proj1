@@ -26,7 +26,9 @@ public class WebApiApplication {
     		ArrayList<String> tmp = OverallIndex.getTop50StopWords();
         	String ret = parseJson.createTop50JSON(tmp);
         	return ret;
-    	}catch(Exception e) {
+    	} catch (IllegalArgumentException e) {
+			return "Failed";
+		} catch(Exception e) {
     		e.printStackTrace();
     		return "Failed";
     	}
@@ -43,6 +45,8 @@ public class WebApiApplication {
 			ArrayList<RankingOutput> tmp = OverallIndex.getNgramData(rankingInput);
 	    	String ret = parseJson.createRankingJSON(tmp);
 	    	return ret;
+		} catch (IllegalArgumentException e) {
+			return "Failed";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "Failed";
@@ -59,6 +63,8 @@ public class WebApiApplication {
 			textTransInput = parseJson.readTextTransformJSON(input);
 			database.addWebinfo(textTransInput);
 			OverallIndex.addDocument(textTransInput);
+		} catch (IllegalArgumentException e) {
+			;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

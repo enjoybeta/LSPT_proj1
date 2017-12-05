@@ -13,6 +13,8 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+mainClassName = "com.indexer.webApi.WebApiApplication"
 
 group = 'com.indexer'
 version = '0.1'
@@ -29,10 +31,4 @@ dependencies {
 	compile group: 'com.datastax.cassandra', name: 'cassandra-driver-core', version: '3.3.2'
 	compile ('com.googlecode.json-simple:json-simple:1.1.1')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-}
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'com.indexer.webApi.WebApiApplication'
-    }
 }
