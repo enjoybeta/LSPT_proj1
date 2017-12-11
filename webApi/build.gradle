@@ -17,7 +17,7 @@ apply plugin: 'application'
 mainClassName = "com.indexer.webApi.WebApiApplication"
 
 group = 'com.indexer'
-version = '0.1'
+version = '1.0'
 sourceCompatibility = 9
 
 repositories {
